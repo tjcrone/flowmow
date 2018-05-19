@@ -1,3 +1,2 @@
-sentry281*
-*.h5
 .ipynb_checkpoints*
+data/*
