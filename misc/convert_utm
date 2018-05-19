@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cat sentry281_20140805_1757.scc |
+  grep --color=never ^SCC $1 |
+  cut -d' ' -f4-5 |
+  awk ' { t = $1; $1 = $2; $2 = t; print; } ' |
+  sed 's/ /,/' |
+  gmt mapproject -Ju9/1 -R-132/-126/40/48 -F |
+  sed 's/\t/,/'
+  #gmt mapproject -Ju9/1 -R-130.015433707344/-130.004184024616/45.9291876472129/45.934767092414 -F |

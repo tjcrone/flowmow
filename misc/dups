@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+prev_line = []
+prev_md5 = []
+first_dupe = True
+ndupes = 0
+with open('2014-jdf.md5', 'r') as f:
+  for line in f:
+    md5 = line.strip().split(',')[0] 
+    if md5 != prev_md5:
+      first_dupe = True
+    if md5 == prev_md5:
+      if first_dupe:
+        ndupes = ndupes + 1
+        print(prev_line.strip())
+        first_dupe = False
+      print(line.strip())
+    prev_md5 = md5
+    prev_line = line
+#print(ndupes)
