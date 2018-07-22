@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# Loop though input file and output google drive blob ids.
+
+while read FILE
+do
+  ID=`rclone lsf -R --format pi --csv ldeo-drive:${FILE:2} | cut -d',' -f2`
+  echo "${FILE},${ID}"
+done < "${1:-/dev/stdin}"
