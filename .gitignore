@@ -1,2 +1,5 @@
 .ipynb_checkpoints*
 data/*
+pangeo/.clientid
+pangeo/.clientsecret
+pangeo/.proxytoken
