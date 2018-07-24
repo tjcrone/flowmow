@@ -3,3 +3,5 @@ data/*
 pangeo/.clientid
 pangeo/.clientsecret
 pangeo/.proxytoken
+__pycache__/
+*.egg-info/
