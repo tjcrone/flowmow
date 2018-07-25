@@ -26,7 +26,7 @@ def open_gdrive_file(blob_id):
     token = _get_token(response)
     if token:
         params = { 'id' : blob_id, 'confirm' : token }
-        response = session.get(URL, params = params, stream = True)
+        response = session.get(url, params = params, stream = True)
     file_bytes = response.content
     return io.BytesIO(file_bytes)
 
