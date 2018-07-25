@@ -13,14 +13,6 @@ if [ $? -eq 0 ]; then
   # get commit hash for tag
   TAG=`git rev-parse --short HEAD`
 
-  # build worker
-  #cd "$PANGEO_DIR/worker"
-  #NAME='tjcrone/pangeo-worker'
-  #docker build -t "$NAME:$TAG" .
-
-  # push worker
-  #docker push "$NAME:$TAG"
-
   # update worker-template tag
   cd "$PANGEO_DIR/docker"
   sed -i '' "s/    image.*/    image: tjcrone\/pangeo-notebook:${TAG}/" worker-template.yaml
