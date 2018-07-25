@@ -1,0 +1,25 @@
+metadata:
+spec:
+  restartPolicy: Never
+  containers:
+  - args:
+      - dask-worker
+      - --nthreads
+      - '2'
+      - --no-bokeh
+      - --memory-limit
+      - 4GB
+      - --death-timeout
+      - '60'
+    image: tjcrone/pangeo-notebook:987dded
+    name: dask-worker
+    securityContext:
+      capabilities:
+        add: [SYS_ADMIN]
+      privileged: true
+    env:
+      - name: GCSFUSE_BUCKET
+        value: pangeo-data
+    resources:
+      requests:
+        memory: 2G
