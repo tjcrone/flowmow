@@ -22,7 +22,7 @@ if [ $? -eq 0 ]; then
   #docker push "$NAME:$TAG"
 
   # update worker-template tag
-  cd "$PANGEO_DIR/notebook"
+  cd "$PANGEO_DIR/docker"
   sed -i '' "s/    image.*/    image: tjcrone\/pangeo-notebook:${TAG}/" worker-template.yaml
 
   # build notebook
