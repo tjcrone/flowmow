@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # move into pangeo directory
-PANGEO_DIR='~/research/flowmow/pangeo'
+PANGEO_DIR='/Users/tjc/research/flowmow/pangeo'
 cd $PANGEO_DIR
 
 # check git status
@@ -14,16 +14,16 @@ if [ $? -eq 0 ]; then
   TAG=`git rev-parse --short HEAD`
 
   # build worker
-  cd "$PANGEO_DIR/worker"
-  NAME='tjcrone/pangeo-worker'
-  docker build -t "$NAME:$TAG" .
+  #cd "$PANGEO_DIR/worker"
+  #NAME='tjcrone/pangeo-worker'
+  #docker build -t "$NAME:$TAG" .
 
   # push worker
-  docker push "$NAME:$TAG"
+  #docker push "$NAME:$TAG"
 
   # update worker-template tag
   cd "$PANGEO_DIR/notebook"
-  sed -i '' "s/    image.*/    image: tjcrone\/pangeo-worker:${TAG}/" worker-template.yaml
+  sed -i '' "s/    image.*/    image: tjcrone\/pangeo-notebook:${TAG}/" worker-template.yaml
 
   # build notebook
   NAME='tjcrone/pangeo-notebook'

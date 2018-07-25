@@ -2,6 +2,9 @@ FROM jupyter/base-notebook
 
 USER root
 
+RUN apt-get update \
+  && apt-get install -yq gpg
+
 RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 
 RUN wget https://packages.cloud.google.com/apt/doc/apt-key.gpg -q -O - | sudo apt-key add -
@@ -60,6 +63,8 @@ RUN pip install numpngw \
                 azure-storage-blob
 
 RUN pip install git+https://github.com/tjcrone/pycamhd@8bdc18647ec20b0a49dc140d3f71b8ef9dba17a9
+
+RUN pip install git+https://github.com/tjcrone/flowmow
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.34.0 \
                                  @jupyterlab/hub-extension@0.8.1 \
