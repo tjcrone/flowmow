@@ -10,9 +10,13 @@ sed -i '' -e "s/^    clientId.*/    clientId: \"$ID\"/" secret-config.yaml
 SECRET=`cat .clientsecret`
 sed -i '' -e "s/^    clientSecret.*/    clientSecret: \"$SECRET\"/" secret-config.yaml
 
+# update repo
+helm repo add jupyterhub https://jupyterhub.github.io/helm-chart
+helm repo update
+
 # upgrade pangeo
 echo "Upgrading pangeo."
-helm upgrade --force --recreate-pods --timeout=600 pangeo jupyterhub/jupyterhub --version=v0.7-d540c9f -f jupyter-config.yaml -f secret-config.yaml
+helm upgrade --force --recreate-pods --timeout=600 pangeo jupyterhub/jupyterhub --version=v0.7-80d1391 -f jupyter-config.yaml -f secret-config.yaml
 
 # unreplace secrets
 sed -i '' -e "s/^  secretToken.*/  secretToken: SECRET/" secret-config.yaml
