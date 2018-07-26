@@ -62,21 +62,3 @@ az network lb delete --name kubernetes --resource-group $LB_GROUP
 printf "\nMoving static IP address into the new resource group.\n"
 AUTO_GROUP="MC_${RESOURCE_GROUP}_${CLUSTER_NAME}_${LOCATION}"
 az resource move --destination-group $AUTO_GROUP --ids $IP_ID
-
-# set up helm and tiller
-kubectl create serviceaccount tiller --namespace=kube-system
-helm init --service-account tiller
-kubectl --namespace=kube-system patch deployment tiller-deploy --type=json --patch='[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/tiller", "--listen=localhost:44134"]}]'
-
-# get helm repositories
-helm repo add jupyterhub https://jupyterhub.github.io/helm-chart/
-helm repo update
-
-# wait for tiller to come up
-printf "\nWaiting for tiller to come up ..."
-test=`helm status 2>&1 | cut -d' ' -f1-2`
-while [[ $test != "Error: release" ]]; do
-  test=`helm status 2>&1 | cut -d' ' -f1-2`
-  sleep 1
-done
-printf " done.\n\n"
