@@ -48,19 +48,16 @@ RUN conda install --yes  \
     zict \
     && conda clean -tipsy
 
-
 RUN pip install --upgrade pip
 RUN pip install numpngw \
                 azure-storage-blob
 RUN pip install git+https://github.com/tjcrone/pycamhd@8bdc18647ec20b0a49dc140d3f71b8ef9dba17a9
 RUN pip install git+https://github.com/tjcrone/flowmow
 
-#RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.34.0 \
-#                                 @jupyterlab/hub-extension@0.8.1 \
-#                                 @pyviz/jupyterlab_holoviews@0.4.0 \
-#                                 jupyterlab_bokeh@0.4.1
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager \
+                                 @jupyterlab/hub-extension
 
-#RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
+RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh
@@ -70,7 +67,7 @@ RUN mkdir /pre-home && chown -R $NB_USER /pre-home
 COPY config.yaml /pre-home
 COPY worker-template.yaml /pre-home
 
-ENV DASK_CONFIG=/home/$NB_USER/config.yaml
+#ENV DASK_CONFIG=/home/$NB_USER/config.yaml
 
 # fix .ssh permissions
 RUN printf "\n#fix .ssh permissions\nif [ -f /home/$NB_USER/.ssh/id_rsa ]; then\n   chmod 400 \"/home/$NB_USER/.ssh/id_rsa\"\nfi\nif [ -f /home/$NB_USER/.ssh/id_rsa.pub ]; then\n   chmod 444 \"/home/$NB_USER/.ssh/id_rsa.pub\"\nfi\nif [ -f /home/$NB_USER/.ssh/known_hosts ]; then\n   chmod 600 \"/home/$NB_USER/.ssh/known_hosts\"\nfi\n" >> /etc/bash.bashrc
