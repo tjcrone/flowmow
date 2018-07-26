@@ -30,6 +30,7 @@ RUN conda install --yes  \
     distributed \
     google-cloud-storage \
     imagehash \
+    ipywidgets \
     julia \
     lz4 \
     matplotlib \
@@ -66,8 +67,6 @@ RUN chmod +x /usr/bin/prepare.sh
 RUN mkdir /pre-home && chown -R $NB_USER /pre-home
 COPY config.yaml /pre-home
 COPY worker-template.yaml /pre-home
-
-#ENV DASK_CONFIG=/home/$NB_USER/config.yaml
 
 # fix .ssh permissions
 RUN printf "\n#fix .ssh permissions\nif [ -f /home/$NB_USER/.ssh/id_rsa ]; then\n   chmod 400 \"/home/$NB_USER/.ssh/id_rsa\"\nfi\nif [ -f /home/$NB_USER/.ssh/id_rsa.pub ]; then\n   chmod 444 \"/home/$NB_USER/.ssh/id_rsa.pub\"\nfi\nif [ -f /home/$NB_USER/.ssh/known_hosts ]; then\n   chmod 600 \"/home/$NB_USER/.ssh/known_hosts\"\nfi\n" >> /etc/bash.bashrc

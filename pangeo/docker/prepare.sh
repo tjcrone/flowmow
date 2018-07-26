@@ -2,8 +2,10 @@
 
 set -x
 
-echo "Copy files from pre-load directory into home"
-cp --update -r -v /pre-home/. /home/jovyan
+echo "Copy Dask configuration files from pre-load directory into home/.config"
+mkdir -p /home/jovyan/.config/dask
+cp --update -r -v /pre-home/config.yaml /home/jovyan/.config/dask/
+cp --update -r -v /pre-home/worker-template.yaml /home/jovyan/.config/dask/
 
 if [ -e "/opt/app/environment.yml" ]; then
     echo "environment.yml found. Installing packages"
