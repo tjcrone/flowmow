@@ -19,7 +19,7 @@ if [ $? -eq 0 ]; then
 
   # build notebook
   NAME='tjcrone/pangeo-notebook'
-  docker build --no-cache -t "$NAME:$TAG" .
+  docker build --pull --no-cache -t "$NAME:$TAG" .
 
   # push notebook
   docker push "$NAME:$TAG"

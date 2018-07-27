@@ -19,7 +19,6 @@ USER $NB_USER
 
 RUN conda update -n base conda
 RUN conda config --add channels conda-forge --force
-RUN conda update --yes --all
 RUN conda install --yes  \
     av>=0.4.0 \
     bokeh=0.12.16 \
@@ -55,7 +54,6 @@ RUN pip install numpngw \
 RUN pip install git+https://github.com/tjcrone/pycamhd@8bdc18647ec20b0a49dc140d3f71b8ef9dba17a9
 RUN pip install git+https://github.com/tjcrone/flowmow
 
-RUN jupyter labextension uninstall @jupyterlab/hub-extension
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 USER root

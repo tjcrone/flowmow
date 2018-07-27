@@ -1,7 +1,7 @@
 singleuser:
   image:
     name: tjcrone/pangeo-notebook
-    tag: b326f92
+    tag: abf1359
   cmd: ['start-singleuser.sh']
   memory:
     guarantee: 4G
