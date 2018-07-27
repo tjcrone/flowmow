@@ -22,7 +22,7 @@ RUN conda config --add channels conda-forge --force
 RUN conda update --yes --all
 RUN conda install --yes  \
     av>=0.4.0 \
-    bokeh \
+    bokeh=0.12.16 \
     cython \
     cytoolz \
     dask \
