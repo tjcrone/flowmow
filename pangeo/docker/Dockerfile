@@ -55,10 +55,8 @@ RUN pip install numpngw \
 RUN pip install git+https://github.com/tjcrone/pycamhd@8bdc18647ec20b0a49dc140d3f71b8ef9dba17a9
 RUN pip install git+https://github.com/tjcrone/flowmow
 
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager \
-                                 @jupyterlab/hub-extension
-
-RUN jupyter serverextension enable --py nbserverproxy --sys-prefix
+RUN jupyter labextension uninstall @jupyterlab/hub-extension
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh

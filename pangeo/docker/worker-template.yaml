@@ -11,7 +11,7 @@ spec:
       - 4GB
       - --death-timeout
       - '60'
-    image: tjcrone/pangeo-notebook:b326f92
+    image: tjcrone/pangeo-notebook:5343991
     name: dask-worker
     securityContext:
       capabilities:
