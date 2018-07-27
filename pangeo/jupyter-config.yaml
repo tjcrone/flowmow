@@ -1,7 +1,7 @@
 singleuser:
   image:
     name: tjcrone/pangeo-notebook
-    tag: b643d40
+    tag: 1b2df00
   cmd: ['start-singleuser.sh']
   memory:
     guarantee: 4G
@@ -13,7 +13,7 @@ rbac:
 
 hub:
   extraConfig: |
-    c.KubeSpawner.singleuser_service_account = 'default'
+    c.KubeSpawner.service_account = 'default'
     c.KubeSpawner.start_timeout = 60 * 10 # 10-minute timeout for Azure
     c.Spawner.default_url = '/lab'
     c.Spawner.cmd = ['jupyter-labhub']
