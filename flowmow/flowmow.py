@@ -102,3 +102,13 @@ def read_sbe3(blob_id, dive_number):
 
     # convert to dataframe
     return pd.DataFrame(sbe3_list, columns=['timestamp','epoch','dive_number','counts_0','counts_1'])
+
+# ITS-90 equation
+def _its90(f, g, h, i, j, f0):
+    return 1/(g + h*(np.log(f0/f)) + i*((np.log(f0/f))**2) + j*((np.log(f0/f))**3)) - 273.15
+
+# convert sbe3 counts to temperature
+def convert_sbe3(counts, g, h, i, j, f0):
+    Fxtal = 4.91548
+    f = 512*Fxtal/(counts/1e6)
+    return _its90(f, g, h, i, j, f0)
