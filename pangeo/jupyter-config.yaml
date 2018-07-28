@@ -4,7 +4,7 @@ singleuser:
     tag: 1b2df00
   cmd: ['start-singleuser.sh']
   memory:
-    guarantee: 4G
+    guarantee: 14G
   storage:
     capacity: 40Gi
 
