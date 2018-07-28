@@ -111,4 +111,17 @@ def _its90(f, g, h, i, j, f0):
 def convert_sbe3(counts, g, h, i, j, f0):
     Fxtal = 4.91548
     f = 512*Fxtal/(counts/1e6)
-    return _its90(f, g, h, i, j, f0)
+    T = _its90(f, g, h, i, j, f0)
+    return T
+
+# convert Paros values to temperature and pressure
+def convert_paros(eta, tau, C1, C2, C3, D1, D2, T1, T2, T3, T4, T5, U0, Y1, Y2, Y3):
+
+    U = eta - U0
+    C = C1 + C2*U + C3*U**2
+    D = D1 + D2*U
+    T0 = T1 + T2*U + T3*U**2 + T4*U**3 + T5*U**4
+
+    T = Y1*U + Y2*U**2 + Y3*U**3
+    P = C*(1-T0**2/tau**2)*(1-D*(1-T0**2/tau**2))
+    return T, P
