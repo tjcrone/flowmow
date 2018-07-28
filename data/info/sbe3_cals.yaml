@@ -1,0 +1,17 @@
+# calibration constants for the SBE3 #2265 probe, which was located
+# on the stinger.
+2265:
+  g: 4.33185264e-3
+  h: 6.43918821e-4
+  i: 2.36253120e-5
+  j: 2.24297344e-6
+  f0: 1000.0
+
+# calibration constants for the SBE3 #2446 probe, which was located
+# on top of the vehicle.
+2446:
+  g: 4.37247477e-3
+  h: 6.48296136e-4
+  i: 2.37876805e-5
+  j: 2.19965081e-6
+  f0: 1000.0
