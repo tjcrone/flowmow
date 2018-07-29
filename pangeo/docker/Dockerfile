@@ -40,6 +40,7 @@ RUN conda install --yes  \
     numcodecs \
     numpy \
     pandas \
+    pyproj \
     pytables \
     python-blosc \
     scipy \
@@ -55,6 +56,7 @@ RUN pip install git+https://github.com/tjcrone/pycamhd@8bdc18647ec20b0a49dc140d3
 RUN pip install git+https://github.com/tjcrone/flowmow
 
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN jupyter labextension install jupyterlab_bokeh
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh
