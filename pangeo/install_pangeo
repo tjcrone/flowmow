@@ -16,7 +16,7 @@ sed -i '' -e "s/^    clientSecret.*/    clientSecret: \"$SECRET\"/" secret-confi
 # set up helm and tiller
 kubectl create serviceaccount tiller --namespace=kube-system || true
 helm init --service-account tiller
-kubectl --namespace=kube-system patch deployment tiller-deploy --type=json --patch='[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/tiller", "--listen=localhost:44134"]}]'
+kubectl --namespace=kube-system patch deployment tiller-deploy --type=json --patch='[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/tiller", "--listen=localhost:44134"]}]' || true
 
 # wait for tiller to come up
 printf "\nWaiting for tiller to come up ..."
