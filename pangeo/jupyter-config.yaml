@@ -13,7 +13,8 @@ rbac:
 
 hub:
   extraConfig: |
-    c.KubeSpawner.service_account = 'default'
+    #c.KubeSpawner.service_account = 'default'
+    c.KubeSpawner.singleuser_service_account = 'default'
     c.KubeSpawner.start_timeout = 60 * 10 # 10-minute timeout for Azure
     c.Spawner.default_url = '/lab'
     c.Spawner.cmd = ['jupyter-labhub']
