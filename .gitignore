@@ -1,7 +1,7 @@
 .ipynb_checkpoints*
 data/raw/*
 data/processed/*
-data/interim/*
+data/interim/*.h5
 pangeo/.clientid
 pangeo/.clientsecret
 pangeo/.proxytoken
