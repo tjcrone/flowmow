@@ -125,3 +125,24 @@ def convert_paros(eta, tau, C1, C2, C3, D1, D2, T1, T2, T3, T4, T5, U0, Y1, Y2, 
     T = Y1*U + Y2*U**2 + Y3*U**3
     P = C*(1-T0**2/tau**2)*(1-D*(1-T0**2/tau**2))
     return T, P
+
+# read Nortek ADV data
+def read_nortek(blob_id, dive_number):
+    nortek_list = []
+    f = open_gdrive_file(blob_id)
+    for line in f:
+        try:
+            line = line.decode('utf-8').strip()
+        except:
+            line = ''
+        if 'VVD' in line[0:4]:
+            if len(line.split(' ')) == 21: # good lines from this instrument will have 21 fields
+                timestamp, epoch = _get_timestamp(line)
+                nortek_list.append([timestamp, epoch, dive_number] +
+                                    list(map(np.float64, line.split(' ')[8:11])) +
+                                    list(map(np.float64, line.split(' ')[12:15])) +
+                                    list(map(np.float64, line.split(' ')[16:19])))
+
+    # convert to dataframe
+    return pd.DataFrame(nortek_list, columns=['timestamp','epoch','dive_number','v0','v1','v2',
+                                              'c0','c1','c2','a0','a1','a2'])
