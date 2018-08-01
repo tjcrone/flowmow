@@ -7,3 +7,4 @@ pangeo/.clientsecret
 pangeo/.proxytoken
 __pycache__/
 *.egg-info/
+scratch.ipynb
