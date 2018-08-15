@@ -8,3 +8,4 @@ pangeo/.proxytoken
 __pycache__/
 *.egg-info/
 scratch.ipynb
+results/nav/*.png
